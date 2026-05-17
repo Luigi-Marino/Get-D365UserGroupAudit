@@ -1,6 +1,6 @@
 function Get-UserGroups {
     $prefix = "AA - LEGO"
-    $users = GetADUser -Filter * -Properties MemberOf, DisplayName, UserPrincipalName, Title
+    $users = Get-ADUser -Filter * -Properties MemberOf, DisplayName, UserPrincipalName, Title
     $results = foreach ($user in $users) {
         $groupNames = $user.MemberOf | ForEach-Object { ($_ -split ",")[0] -replace "^CN=", "" }
         $rbacGroups = $groupNames | Where-Object { $_ -like "$prefix*" }
