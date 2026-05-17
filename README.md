@@ -1,4 +1,4 @@
-# RBAC Audit Script — “AA - LEGO” Project
+# RBAC Audit Script
 
 ## Overview
 This script audits Active Directory users and identifies which RBAC groups (prefixed with **“AA - LEGO”**) they are assigned to.  
