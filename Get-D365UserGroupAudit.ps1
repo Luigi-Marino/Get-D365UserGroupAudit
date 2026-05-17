@@ -1,14 +1,14 @@
 # ============================================================
-# Get-Diagnostics Powershell Script
+# Get-D365UserGroupAudit Powershell Script
 # ============================================================
 
 # ------------------------------------------------------------
 # CONFIGURATION
 # ------------------------------------------------------------
-$Repo = "Powershell_App_Template"
+$Repo = "Get-D365UserGroupAudit"
 $RepoBase = "https://raw.githubusercontent.com/Luigi-Marino/$Repo/main"
 $ModuleNames = @(
-    "template_module.psm1"
+    "get_user_groups.psm1"
 )
 
 # ------------------------------------------------------------
@@ -40,4 +40,4 @@ else {
 # ------------------------------------------------------------
 # ENTRY POINT
 # ------------------------------------------------------------
-Test-Module
+Get-UserGroups | Format-Table -AutoSize
