@@ -8,7 +8,8 @@
 $Repo = "Get-D365UserGroupAudit"
 $RepoBase = "https://raw.githubusercontent.com/Luigi-Marino/$Repo/main"
 $ModuleNames = @(
-    "get_user_groups.psm1"
+    "get_user_groups.psm1",
+    "check_compliance.psm1"
 )
 
 # ------------------------------------------------------------
