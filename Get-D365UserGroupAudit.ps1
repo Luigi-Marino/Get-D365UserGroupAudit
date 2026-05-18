@@ -43,6 +43,6 @@ else {
 # ------------------------------------------------------------
 #Get-UserGroups | Format-Table -AutoSize
 Get-MappingFromSharepoint `
-    -SharepointPath "https://sensical.sharepoint.com/:x:/s/Support/IQD372CrP5u8Qr7lBvFJ8iPsAZgp92c-kfvarL93nI0Cluw?e=sheJ7U" `
+    -SharepointPath "\\sensical.sharepoint.com/Support/Documents/General/Corona/LEGO/RBAC/Lego AD Groups_ACC_PRF_PROD_v1.1_240425.xlsx" `
     -SheetName "Mapping - v2.2" `
     -UserResults Get-UserGroups | Format-Table -AutoSize
