@@ -40,4 +40,8 @@ else {
 # ------------------------------------------------------------
 # ENTRY POINT
 # ------------------------------------------------------------
-Get-UserGroups | Format-Table -AutoSize
+#Get-UserGroups | Format-Table -AutoSize
+Get-MappingFromSharepoint `
+    -SharepointPath "https://sensical.sharepoint.com/:x:/s/Support/IQD372CrP5u8Qr7lBvFJ8iPsAZgp92c-kfvarL93nI0Cluw?e=sheJ7U" `
+    -SheetName "Mapping - v2.2" `
+    -UserResults Get-UserGroups | Format-Table -AutoSize
