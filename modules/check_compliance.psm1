@@ -10,6 +10,8 @@ function Get-MappingFromSharepoint {
         [array]$UserResults
     )
 
+    Install-Module -Name ImportExcel
+
     $rows = Import-Excel -Path $SharepointPath -WorksheetName $SheetName -DataOnly
     $groupColumns = @(
         "AD Group #1",
