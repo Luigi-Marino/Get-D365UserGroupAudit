@@ -6,7 +6,8 @@
 # CONFIGURATION
 # ------------------------------------------------------------
 $Repo = "Get-D365UserGroupAudit"
-$RepoBase = "https://raw.githubusercontent.com/Luigi-Marino/$Repo/main"
+#$RepoBase = "https://raw.githubusercontent.com/Luigi-Marino/$Repo/main"
+$RepoBase = "https://raw.githubusercontent.com/Luigi-Marino/$Repo/phase2"
 $ModuleNames = @(
     "get_user_groups.psm1",
     "check_compliance.psm1"
