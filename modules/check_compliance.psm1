@@ -1,46 +1,29 @@
 function Get-MappingFromSharepoint {
-    param(
-        [Parameter(Mandatory)]
-        [string]$SharepointPath,
+    $excel = New-Object -ComObject Excel.Application
+    $excel.Visible = $false
 
-        [Parameter(Mandatory)]
-        [string]$SheetName,
+    $workbook = $excel.Workbooks.Open("https://sensical.sharepoint.com/:x:/s/Support/IQD372CrP5u8Qr7lBvFJ8iPsAZgp92c-kfvarL93nI0Cluw?e=sheJ7U")
+    $sheet = $workbook.Worksheets.Item("Mapping - v2.2")
 
-        [Parameter(Mandatory)]
-        [array]$UserResults
-    )
+    # Read used range
+    $range = $sheet.UsedRange.Value2
 
-    Install-Module -Name ImportExcel
+    # Close Excel
+    $workbook.Close($false)
+    $excel.Quit()
 
-    $rows = Import-Excel -Path $SharepointPath -WorksheetName $SheetName -DataOnly
-    $groupColumns = @(
-        "AD Group #1",
-        "AD Group #2",
-        "AD Group #3",
-        "AD Group #4",
-        "AD Group #5",
-        "AD Group #6",
-        "AD Group #7",
-        "AD Group #8",
-        "AD Group #9"
-    )
-
-    $mapping = @{}
-
-    foreach ($row in $rows) {
-
-        $jobTitle = $row.JobTitle
-        if (-not $jobTitle) { continue }
-
-        $groups = foreach ($col in $groupColumns) {
-            $value = $row.$col
-            if ($value -and $value.Trim() -ne "") {
-                $value.Trim()
-            }
+    # Convert to objects
+    $headers = $range[1]
+    $data = for ($i = 2; $i -le $range.GetLength(0); $i++) {
+        $obj = [ordered]@{}
+        for ($j = 1; $j -le $headers.Length; $j++) {
+            $obj[$headers[$j]] = $range[$i, $j]
         }
-        $mapping[$jobTitle] = $groups
+        [pscustomobject]$obj
     }
-    return $mapping
+
+    return $data
+
 }
 
 Export-ModuleMember -Function Get-MappingFromSharepoint
