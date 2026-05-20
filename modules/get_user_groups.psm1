@@ -11,7 +11,7 @@ function Get-UserGroups {
                 DisplayName = $user.DisplayName
                 UPN         = $user.UserPrincipalName
                 JobTitle    = $user.Title
-                RBACGroups  = $rbacGroups
+                RBACGroups  = [string]::Join(", ", $rbacGroups)
             }
         }
     }
