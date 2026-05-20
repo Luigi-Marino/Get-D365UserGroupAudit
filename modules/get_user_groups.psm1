@@ -15,24 +15,26 @@ function Get-UserGroups {
 
             $nonProdTokens = @("NON-PROD", "ACC", "TST", "PRF")
 
-            # FORCE ARRAYS EVERYWHERE
             $nonProdGroups = @(
                 $rbacGroups | Where-Object {
-                    $grp = $_
-                    $nonProdTokens | ForEach-Object { $grp -like "*$_*" }
+                    $envToken = ($_ -split " - ")[2]
+                    $nonProdTokens -contains $envToken
                 }
             )
 
             $powerBiGroups = @(
-                $rbacGroups | Where-Object { $_ -like "*ADL*" }
+                $rbacGroups | Where-Object {
+                    $envToken = ($_ -split " - ")[2]
+                    $envToken -eq "ADL"
+                }
             )
 
             $prodGroups = @(
-                $rbacGroups |
-                    Where-Object {
-                        $_ -notin $nonProdGroups -and
-                        $_ -notin $powerBiGroups
-                    }
+                $rbacGroups | Where-Object {
+                    $envToken = ($_ -split " - ")[2]
+                    $envToken -notin $nonProdTokens -and
+                    $envToken -ne "ADL"
+                }
             )
 
             [pscustomobject]@{
