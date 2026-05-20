@@ -40,4 +40,4 @@ else {
 # ------------------------------------------------------------
 # ENTRY POINT
 # ------------------------------------------------------------
-Get-UserGroups | Format-Table -AutoSize
+Get-UserGroups | Export-Csv -Path "D365UserGroupAudit.csv" -NoTypeInformation
